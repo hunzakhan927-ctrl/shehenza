@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family:Georgia, 'Times New Roman', Times, serif;
+            background-color: bisque;
+            
+        }
+        form{
+            width: 350px;
+            margin: 50px auto ;
+            padding: 25px;
+            background-color: white;
+            border-radius: 20px;
+        }
+        input{
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 15px;
+            box-sizing: border-box;
+        }
+        button{
+            width: 100%;
+            padding: 10px;
+            background-color: black;
+            color: aliceblue;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <form id="myform">
+        <h2>registration form</h2>
+        <label for="name">name</label>
+        <input type="text" id="name">
+
+
+        <label for="email">email</label>
+        <input type="text" id="email">
+
+
+
+        <label for="phone">phone</label>
+        <input type="text" id="phone">
+
+        <p id="error" class="error"></p>
+        <button type="submit">register</button>
+    </form>
+
+
+
+
+
+    <script>
+    document.getElementById("myform").addEventListener("submit" , function(event){
+        event.preventDefault()
+
+
+        let name=document.getElementById("name").value
+        let email=document.getElementById("email").value
+        let phone=document.getElementById("phone").value
+
+       let nameRegex=/^[A-Za-z ]+$/;
+       let emailRegex=/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+$/;
+       let phoneRegex=/^03[0-9]{9}$/;
+
+       if(!nameRegex.test(name)){
+        document.getElementById("error").innerText="name can only contain letters";
+        return;
+       }
+       if(!emailRegex.test(email)){
+        document.getElementById("error").innerText="enter a valid email";
+        return;
+       }
+       if(!phoneRegex.test(phone)){
+        document.getElementById("error").innerText="enter a valid number";
+        return;
+       }
+         document.getElementById("error").innerText="";
+         alert("form submitted succesfully")
+
+
+
+
+
+
+
+
+
+    })
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

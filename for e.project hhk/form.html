@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Event Registration</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+
+            /* YOUR EVENT PICTURE */
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url("event.jpg");
+
+            background-size: cover;
+            background-position: center;
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            margin: 0;
+        }
+
+
+        form {
+            width: 350px;
+
+            background-color: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+
+        h2 {
+            text-align: center;
+
+            color: #333;
+
+            margin-bottom: 25px;
+        }
+
+
+        label {
+            display: block;
+
+            margin-bottom: 6px;
+
+            color: #333;
+
+            font-weight: bold;
+        }
+
+
+        input,
+        select {
+
+            width: 100%;
+
+            padding: 11px;
+
+            margin-bottom: 18px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 7px;
+
+            box-sizing: border-box;
+
+            font-size: 14px;
+        }
+
+
+        input:focus,
+        select:focus {
+
+            outline: none;
+
+            border-color: #6c63ff;
+        }
+
+
+        button {
+
+            width: 100%;
+
+            padding: 12px;
+
+            background-color: #6c63ff;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 7px;
+
+            font-size: 16px;
+
+            cursor: pointer;
+        }
+
+
+        button:hover {
+
+            background-color: #20163d48;
+        }
+
+
+        #error {
+
+            color: red;
+
+            font-size: 14px;
+
+            text-align: center;
+        }
+
+
+        #success {
+
+            color: green;
+
+            font-size: 14px;
+
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <form id="myform">
+
+        <h2>Event Registration</h2>
+
+
+        <label for="name">
+            Name
+        </label>
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Enter your name"
+        >
+
+
+        <label for="email">
+            Email
+        </label>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+        >
+
+
+        <label for="phone">
+            Phone
+        </label>
+
+        <input
+            type="text"
+            id="phone"
+            placeholder="03001234567"
+        >
+
+
+        <label for="event">
+            Select Event
+        </label>
+
+        <select id="event">
+
+            <option value="">
+                Select an event
+            </option>
+
+            <option value="wedding event">
+               wedding event
+            </option>
+
+            <option value="birthday party">
+                Birthday Party
+            </option>
+
+            <option value="graduation parties">
+                Graduation Parties
+            </option>
+
+            <option value="corporate functions">
+                Corporate Functions
+            </option>
+             <option value="engagement parties">
+                Engagement Parties
+            </option>
+             <option value="private parties">
+                Private Parties
+            </option>
+
+
+        </select>
+
+
+        <p id="error"></p>
+
+        <p id="success"></p>
+
+
+        <button type="submit">
+            Register Now
+        </button>
+
+    </form>
+
+
+    <script>
+
+        document
+        .getElementById("myform")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+
+            let name =
+                document.getElementById("name").value.trim();
+
+            let email =
+                document.getElementById("email").value.trim();
+
+            let phone =
+                document.getElementById("phone").value.trim();
+
+            let eventName =
+                document.getElementById("event").value;
+
+
+            let error =
+                document.getElementById("error");
+
+            let success =
+                document.getElementById("success");
+
+
+            error.innerText = "";
+
+            success.innerText = "";
+
+
+            /* NAME */
+
+            let nameRegex =
+                /^[A-Za-z ]+$/;
+
+
+            if (!nameRegex.test(name)) {
+
+                error.innerText =
+                    "Please enter a valid name.";
+
+                return;
+            }
+
+
+            /* EMAIL */
+
+            let emailRegex =
+                /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
+
+            if (!emailRegex.test(email)) {
+
+                error.innerText =
+                    "Please enter a valid email.";
+
+                return;
+            }
+
+
+            /* PHONE */
+
+            let phoneRegex =
+                /^03[0-9]{9}$/;
+
+
+            if (!phoneRegex.test(phone)) {
+
+                error.innerText =
+                    "Please enter a valid phone number.";
+
+                return;
+            }
+
+
+            /* EVENT */
+
+            if (eventName === "") {
+
+                error.innerText =
+                    "Please select an event.";
+
+                return;
+            }
+
+
+            /* SUCCESS */
+
+            success.innerText =
+                "Registration successful!";
+
+            document.getElementById("myform").reset();
+
+        });
+
+    </script>
+
+
+</body>
+</html>
